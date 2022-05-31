@@ -15,28 +15,40 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.http import HttpResponse
-from django.utils.translation import gettext as _ # импортируем функцию для перевода
-from django.views import View
-from django.shortcuts import render
+# from django.http import HttpResponse
+# from django.utils.translation import gettext as _ # импортируем функцию для перевода
+# from django.views import View
+# from django.shortcuts import render
+from django.conf.urls.i18n import i18n_patterns
+from django.contrib.auth.decorators import login_required
  
 # Create your views here.
  
-class Index(View):
-    def get(self, request):
-        #. Translators: This message appears on the home page only
-        string = _('Hello world')
+# class Index(View):
+#     def get(self, request):
+#         #. Translators: This message appears on the home page only
+#         string = _('Hello world')
+#
+#         context = {
+#             'string': string,
+#         }
+#
+#         return HttpResponse(render(request, 'index.html', context))
+#
 
-        context = {
-            'string': string,
-        }
-
-        return HttpResponse(render(request, 'index.html', context))
-
+# @login_required
+# def set_language(request):
+#     lang = request.GET.get('ru', 'en')
+#     request.session[settings.LANGUAGE_SESSION_KEY] = lang
+#     response = HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+#     response.set_cookie(settings.LANGUAGE_COOKIE_NAME, lang)
+#     return response
 
 
 urlpatterns = [
     path('i18n/', include('django.conf.urls.i18n')), # подключаем встроенные эндопинты для работы с локализацией
     path('admin/', admin.site.urls),
-    path('index/', Index.as_view())
+    #path('', Index.as_view()),
+    path('', include('example.urls1'))
 ]
+

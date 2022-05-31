@@ -1,0 +1,5 @@
+https://egorovegor.ru/django-multiple-language-support/
+# ссылка на поддержку нескольких языков в джанго
+
+https://andreyex.ru/programmirovanie/python/kak-ispolzovat-modul-pytz-v-python/ # работа
+с датой и временем и часовыми поясами
